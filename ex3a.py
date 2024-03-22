@@ -58,4 +58,5 @@ def main(file):
 
     print("Symbols Entropy: %d" %symbolsEntrop)
 
-main("/workspaces/CD/fibonacci.kt")
+if __name__=="__main__":
+    main("/workspaces/CD/resources/fibonacci.kt")
