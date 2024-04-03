@@ -62,7 +62,7 @@ def main(file):
     for x, y in symbolsTop5.items():
             print("Symbol: '%c' - Percentage: %f" %(x, y))
 
-def main2(file):
+def main(file):
     f=open(file, "rb")
     text = f.read()
     totalBytes = len(text)
@@ -79,4 +79,5 @@ def main2(file):
     for x, y in symbolsTop5.items():
             print("Symbol: '%s' - Percentage: %f" %(x, y))
 
-main2("/workspaces/CD/ListaPalavrasPT.txt")
+if __name__=="__main__":
+    main("/workspaces/CD/ListaPalavrasPT.txt")

@@ -1,6 +1,6 @@
 import random
 
-from ex3a import symbolsHistogram, symbolsProbability
+from ex3a import symbolsHistogram, symbolsProbability, symbolsEntropy, symbolsOwnInformation
 
 
 
@@ -15,30 +15,44 @@ def limitMaker(fmp, r):
 
 
 
-    
-
 def randomSymbolGenerator(fmp, N, file): #fmp = a: 0.5 b: 0.5 aabb pode acontecer sair bbbb?
     maxLimit = 1000
     limits = limitMaker(fmp, maxLimit)
-    f = open(file, "a")
+    f = open(file, "w")
 
     for i in range(0,N):
         randomNum = random.randrange(1, maxLimit)
         for limit, symbol in limits.items():
             if(randomNum < limit):
-                print(chr(symbol))
                 f.write(chr(symbol))
                 break
 
 
-def main4a(file):
-    f=open("/workspaces/CD/resources/maximumSubarray.kt", "rb")
-    text = f.read()
-    totalBytes = len(text)
+def main(file):
+    #f=open("/workspaces/CD/resources/maximumSubarray.kt", "rb")
+    f = open("./resources/maximumSubarray.kt", "rb")
+    textS = f.read()
+    totalBytesS = len(textS)
 
-    symbolsFreq = symbolsHistogram(text)
-    symbolsProb = symbolsProbability(symbolsFreq, totalBytes)
+    symbolsFreqS = symbolsHistogram(textS)
+    symbolsProbS = symbolsProbability(symbolsFreqS, totalBytesS)
+    symbolsOwnInfoS = symbolsOwnInformation(symbolsProbS)
+    symbolsEntropS = symbolsEntropy(symbolsOwnInfoS, symbolsProbS)
 
-    randomSymbolGenerator(symbolsProb, 3, file)
+    randomSymbolGenerator(symbolsProbS, 8, file)
 
-main4a("/workspaces/CD/generated.txt")
+    d = open(file, "rb")
+    textD = d.read()
+    totalBytesD = len(textD)
+
+    symbolsFreqD = symbolsHistogram(textD)
+    symbolsProbD = symbolsProbability(symbolsFreqD, totalBytesD)
+    symbolsOwnInfoD = symbolsOwnInformation(symbolsProbD)
+    symbolsEntropD = symbolsEntropy(symbolsOwnInfoD, symbolsProbD)
+
+    print("Source Entropy: %d" %symbolsEntropS)
+    print("Destination Entropy: %d" %symbolsEntropD)
+
+if __name__=="__main__":
+    #main("/workspaces/CD/generated.txt")
+    main("generated.txt")

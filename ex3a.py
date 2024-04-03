@@ -59,4 +59,5 @@ def main(file):
     print("Symbols Entropy: %d" %symbolsEntrop)
 
 if __name__=="__main__":
-    main("/workspaces/CD/resources/fibonacci.kt")
+    #main("/workspaces/CD/resources/fibonacci.kt")
+    main("resources/fibonacci.kt")
