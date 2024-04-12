@@ -15,17 +15,23 @@ def limitMaker(fmp, r):
 
 
 
-def randomSymbolGenerator(fmp, N, file): #fmp = a: 0.5 b: 0.5 aabb pode acontecer sair bbbb?
+def randomSymbolGenerator(fmp, N): #fmp = a: 0.5 b: 0.5 aabb pode acontecer sair bbbb?
     maxLimit = 1000
     limits = limitMaker(fmp, maxLimit)
-    f = open(file, "w")
-
+    symbols = ""
+    
     for i in range(0,N):
         randomNum = random.randrange(1, maxLimit)
         for limit, symbol in limits.items():
             if(randomNum < limit):
-                f.write(chr(symbol))
+                symbols = symbols + str(symbol)
                 break
+    return symbols
+
+def writeInFile(str, file):
+    f = open(file, "w")
+    f.write(str)
+    f.close()
 
 
 def main(file):
@@ -33,13 +39,14 @@ def main(file):
     f = open("./resources/maximumSubarray.kt", "rb")
     textS = f.read()
     totalBytesS = len(textS)
-
+    
     symbolsFreqS = symbolsHistogram(textS)
     symbolsProbS = symbolsProbability(symbolsFreqS, totalBytesS)
     symbolsOwnInfoS = symbolsOwnInformation(symbolsProbS)
     symbolsEntropS = symbolsEntropy(symbolsOwnInfoS, symbolsProbS)
-
-    randomSymbolGenerator(symbolsProbS, 8, file)
+    
+    symbols = randomSymbolGenerator(symbolsProbS, 8)
+    writeInFile(symbols, file)
 
     d = open(file, "rb")
     textD = d.read()
