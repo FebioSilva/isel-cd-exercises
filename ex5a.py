@@ -21,7 +21,7 @@ def cypherVernamImage(image, start = {}, finish = {}):
     for x in range(start['x'], finish['x'] + 1):
         for y in range(start['y'], finish['y'] + 1):
             if(mode == "RGB"):
-                random
+                
             img[[x], [y]]
 
 def main(image, start, finish):
