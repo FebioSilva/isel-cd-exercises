@@ -70,7 +70,6 @@ def passWordGenerator(file):
     
     password = ""
 
-
     for i in range(0, n):
         choice = randomSymbolGenerator(choiceFMP, 1)
         if(choiceFMP[choice] != 0.01):
@@ -90,24 +89,10 @@ def passWordGenerator(file):
 
     writeInFile(password, file)
 
-
-
-
-
-
-        
-
-
-
-
-
-
-        
-
 def main():
-    pinGenerator("pinGenerated.txt")
-    euroMilhoesGenerator("euroMilhoesGenerator.txt")
-    passWordGenerator("passwordGenerated.txt")
+    pinGenerator("generated-content/pinGenerated.txt")
+    euroMilhoesGenerator("generated-content/euroMilhoesGenerator.txt")
+    passWordGenerator("generated-content/passwordGenerated.txt")
 
 if __name__=="__main__":
     main()

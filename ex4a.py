@@ -62,4 +62,4 @@ def main(file):
 
 if __name__=="__main__":
     #main("/workspaces/CD/generated.txt")
-    main("generated.txt")
+    main("generated-content/generated.txt")
