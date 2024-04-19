@@ -2,7 +2,8 @@ from PIL import Image
 import random
 
 def cypherColoredImage(image, start, finish, keysImg):
-    pixels = image.load()
+    copiedImg = image.copy()
+    pixels = copiedImg.load()
     keyPixels = keysImg.load()
     for x in range(start['x'], finish['x']):
         for y in range(start['y'], finish['y']):
@@ -15,11 +16,12 @@ def cypherColoredImage(image, start, finish, keysImg):
             cypheredG = g ^ keyG
             cypheredB = b ^ keyB
             pixels[x, y] = (cypheredR, cypheredG, cypheredB)
-    image.save("generated-content/cypheredImage.png")
+    copiedImg.save("generated-content/cypheredImage.png")
     keysImg.save("generated-content/cypherKeys.png")
 
 def decypherColoredImage(cyphImage, start, finish, keysImg):
-    pixels = cyphImage.load()
+    copiedCyphImg = cyphImage.copy()
+    pixels = copiedCyphImg.load()
     keyPixels = keysImg.load()
     for x in range(start['x'], finish['x']):
         for y in range(start['y'], finish['y']):
@@ -29,10 +31,11 @@ def decypherColoredImage(cyphImage, start, finish, keysImg):
             decypheredG = g ^ keyG
             decypheredB = b ^ keyB
             pixels[x, y] = (decypheredR, decypheredG, decypheredB)
-    cyphImage.save("generated-content/decypheredImage.png")
+    copiedCyphImg.save("generated-content/decypheredImage.png")
 
 def cypherMonochromaticImage(image, start, finish, keysImg):
-    pixels = image.load()
+    copiedImg = image.copy()
+    pixels = copiedImg.load()
     keyPixels = keysImg.load()
     for x in range(start['x'], finish['x']):
         for y in range(start['y'], finish['y']):
@@ -41,11 +44,12 @@ def cypherMonochromaticImage(image, start, finish, keysImg):
             pixel = pixels[x, y]
             cypheredPixel = pixel ^ key
             pixels[x, y] = cypheredPixel
-    image.save("generated-content/cypheredImage.png")
+    copiedImg.save("generated-content/cypheredImage.png")
     keysImg.save("generated-content/cypherKeys.png")
 
 def decypherMonochromaticImage(cyphImage, start, finish, keysImg):
-    pixels = cyphImage.load()
+    copiedCyphImg = cyphImage.copy()
+    pixels = copiedCyphImg.load()
     keyPixels = keysImg.load()
     for x in range(start['x'], finish['x']):
         for y in range(start['y'], finish['y']):
@@ -53,7 +57,7 @@ def decypherMonochromaticImage(cyphImage, start, finish, keysImg):
             pixel = pixels[x, y]
             decypheredPixel = pixel ^ key
             pixels[x, y] = decypheredPixel
-    cyphImage.save("generated-content/decypheredImage.png")
+    copiedCyphImg.save("generated-content/decypheredImage.png")
 
 def vernamImage(image, start = {}, finish = {}):
     img = Image.open(image)
@@ -95,5 +99,5 @@ def main(image, start = {}, finish = {}):
     vernamImage(image, start, finish)
 
 if __name__=="__main__":
-    main("./resources/barries.jpg", {'x': 25, 'y': 25}, {'x': 225, 'y': 225})
+    main("./resources/lena.bmp", {'x': 25, 'y': 25}, {'x': 225, 'y': 225})
     
