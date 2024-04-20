@@ -93,8 +93,8 @@ void main(){
     int val = 3;
     count_bits(val);
     print_fibonnaci(val);
-    int freq = file_symbol_freq("/workspaces/CD/test.txt",'$');
+    int freq = file_symbol_freq("resources/alice29.txt",'s');
     printf("Frequencia do symbol %c: %d \n",'$',freq);
-    file_histogram("/workspaces/CD/test.txt");
-    reverse_file("/workspaces/CD/test.txt", "/workspaces/CD/test2.txt");
+    file_histogram("resources/test.txt");
+    reverse_file("resources/test.txt", "/workspaces/CD/test2.txt");
 }

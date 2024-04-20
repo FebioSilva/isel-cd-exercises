@@ -5,10 +5,11 @@ def symbolsHistogram(text):
     symbols = {}
 
     for c in text:
-        if(symbols.get(c) == None):
-            symbols[c] = 1
+        char = chr(c)
+        if(symbols.get(char) == None):
+            symbols[char] = 1
         else:
-            symbols[c] = symbols.get(c) + 1
+            symbols[char] = symbols.get(char) + 1
             
     return symbols
 

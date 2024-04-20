@@ -6,6 +6,7 @@ def pinGenerator(file):
     pinFMP = { '0': 0.1, '1': 0.1, '2': 0.1, '3': 0.1, '4': 0.1, '5': 0.1, '6': 0.1, '7': 0.1, '8': 0.1, '9': 0.1 }
     N = random.randrange(4, 7)
     symbols = randomSymbolGenerator(pinFMP, N)
+    print(symbols)
     writeInFile(symbols, file)
 
 def euroInfo(nOfSymbols, nOfTotalSymbols):
@@ -34,6 +35,7 @@ def euroMilhoesGenerator(file):
     euroKeys = euroInfo(5, 50)
     ## Generate the keys for the euro stars
     euroStars = euroInfo(2, 12)
+    print(euroKeys + " - " + euroStars)
     writeInFile(euroKeys + " - " + euroStars, file)
         
 def generateNotSpecialFMP(first, total):
@@ -59,6 +61,11 @@ def generateSpecialFMP():
         fmp[chr(n)] = 1/total
 
     return fmp
+
+def appendInFile(str, file):
+    f = open(file, "a")
+    f.write(str)
+    f.close()
 
 def passWordGenerator(file):
     numbersFMP = generateNotSpecialFMP(48, 10)
@@ -86,13 +93,20 @@ def passWordGenerator(file):
             password += randomSymbolGenerator(smallLettersFMP, 1)
         elif(choice == "3"):
             password += randomSymbolGenerator(specialFMP, 1)
+   # print(password)
+    #writeInFile(password, file)
+    password += "\n"
+    appendInFile(password, file)
 
-    writeInFile(password, file)
+
 
 def main():
     pinGenerator("generated-content/pinGenerated.txt")
     euroMilhoesGenerator("generated-content/euroMilhoesGenerator.txt")
     passWordGenerator("generated-content/passwordGenerated.txt")
+
+    for i in range(0, 1000):
+        passWordGenerator("generated-content/1kpasswordGenerated.txt")
 
 if __name__=="__main__":
     main()
