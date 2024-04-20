@@ -80,4 +80,4 @@ def main(file):
             print("Symbol: '%s' - Percentage: %f" %(x, y))
 
 if __name__=="__main__":
-    main("/workspaces/CD/ListaPalavrasPT.txt")
+    main("./resources/ListaPalavrasPT.txt")

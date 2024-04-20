@@ -18,7 +18,7 @@ def berComparionWithFile(file, p):
     return newSeq
 
 def binaryStringToFile(binary_str):
-    f = open("resources/binary_str.txt", "w")
+    f = open("generated-content/binary_str.txt", "w")
     for i in range(0, len(binary_str), 8):
         char = chr(int(binary_str[i:i+8],2))
         f.write(char)
