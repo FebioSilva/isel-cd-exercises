@@ -15,7 +15,7 @@ def limitMaker(fmp, r):
 
 
 
-def randomSymbolGenerator(fmp, N): #fmp = a: 0.5 b: 0.5 aabb pode acontecer sair bbbb?
+def randomSymbolGenerator(fmp, N):
     maxLimit = 1000
     limits = limitMaker(fmp, maxLimit)
     symbols = ""
@@ -44,8 +44,9 @@ def main(file):
     symbolsProbS = symbolsProbability(symbolsFreqS, totalBytesS)
     symbolsOwnInfoS = symbolsOwnInformation(symbolsProbS)
     symbolsEntropS = symbolsEntropy(symbolsOwnInfoS, symbolsProbS)
+   
     
-    symbols = randomSymbolGenerator(symbolsProbS, 8)
+    symbols = randomSymbolGenerator(symbolsProbS, 1000)
     writeInFile(symbols, file)
 
     d = open(file, "rb")
@@ -57,8 +58,8 @@ def main(file):
     symbolsOwnInfoD = symbolsOwnInformation(symbolsProbD)
     symbolsEntropD = symbolsEntropy(symbolsOwnInfoD, symbolsProbD)
 
-    print("Source Entropy: %d" %symbolsEntropS)
-    print("Destination Entropy: %d" %symbolsEntropD)
+    print("Source Entropy: {:.2f}".format(symbolsEntropS))
+    print("Destination Entropy: {:.4f}".format(symbolsEntropD))
 
 if __name__=="__main__":
     #main("/workspaces/CD/generated.txt")

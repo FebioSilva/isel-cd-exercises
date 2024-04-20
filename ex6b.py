@@ -26,7 +26,6 @@ def main():
     berComparison(1024, 0.3)
     berComparison(10240, 0.3)
     berComparison(102400, 0.3)
-    berComparison(1024000, 0.3)
 
 if __name__ == "__main__":
     main()
