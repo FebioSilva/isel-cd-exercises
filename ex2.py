@@ -13,7 +13,7 @@ def aritmeticProgression(u, r, N):
 def factorialNumber(N):
     result = 1
     for x in range(N):
-        result += result*x
+        result += result * x
     return result
 
 #Função que apresenta todos os números primos contidos no intervalo definido por lef t e right, inclusivamente.
@@ -23,9 +23,9 @@ def minMultipleCommon(a, b):
     d = b
     while a != b:
         if a < b:
-            a+=c
+            a += c
         else:
-            b+=d
+            b += d
     return a
 
 #Função que apresenta todos os números primos contidos no intervalo definido por lef t e right, inclusivamente.

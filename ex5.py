@@ -99,5 +99,5 @@ def main(image, start = {}, finish = {}):
     vernamImage(image, start, finish)
 
 if __name__=="__main__":
-    main("./resources/lena.bmp", {'x': 25, 'y': 25}, {'x': 225, 'y': 225})
+    main("./resources/barries.jpg", {'x': 0, 'y': 0}, {'x': 425, 'y': 425})
     

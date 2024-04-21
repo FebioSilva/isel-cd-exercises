@@ -51,8 +51,11 @@ def main(file):
     totalBytes = len(text)
 
     symbolsFreq = symbolsFrequency(text)
+    symbolsFreqPair = symbolsFreqPairs(text)
     symbolsPer = symbolsPercentage(symbolsFreq, totalBytes)
+    symbolsPerPair = symbolsPercentage(symbolsFreqPair, totalBytes)
     symbolsTop5 = symbolsTopFive(symbolsPer)
+    symbolsTop5Pair = symbolsTopFive(symbolsPerPair)
 
     print("All symbols\n")
     for x, y in symbolsPer.items():
@@ -62,22 +65,13 @@ def main(file):
     for x, y in symbolsTop5.items():
             print("Symbol: '%c' - Percentage: %f" %(x, y))
 
-def main(file):
-    f=open(file, "rb")
-    text = f.read()
-    totalBytes = len(text)
-
-    symbolsFreq = symbolsFreqPairs(text)
-    symbolsPer = symbolsPercentage(symbolsFreq, totalBytes)
-    symbolsTop5 = symbolsTopFive(symbolsPer)
-
-    print("All symbols\n")
-    for x, y in symbolsPer.items():
+    print("All symbol pairs\n")
+    for x, y in symbolsPerPair.items():
             print("Symbol: '%s' - Percentage: %f" %(x, y))
 
-    print("\nTop 5 symbols\n")
-    for x, y in symbolsTop5.items():
-            print("Symbol: '%s' - Percentage: %f" %(x, y))
+    print("\nTop 5 symbol pairs\n")
+    for x, y in symbolsTop5Pair.items():
+            print("Symbol: '%s' - Percentage: %f" %(x, y))        
 
 if __name__=="__main__":
     main("./resources/ListaPalavrasPT.txt")
