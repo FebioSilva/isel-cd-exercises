@@ -19,13 +19,44 @@ def encode(binary_str):
 #Falta resolver esta descodificação
 def decode(binary_str):
     new_binary_str = ""
-    for b in range(0, len(binary_str), 3):
-        if(binary_str[b] == binary_str[b + 1]):
-            new_binary_str += binary_str[b]
-        elif(binary_str[b] == binary_str[b + 2]):
-            new_binary_str += binary_str[b]
+    for b in range(0, len(binary_str), 7):
+        bit0 = binary_str[b]
+        bit1 = binary_str[b + 1]
+        bit2 = binary_str[b + 2]
+        bit3 = binary_str[b + 3]
+        r_bit0 = binary_str[b + 4]
+        r_bit1 = binary_str[b + 5]
+        r_bit2 = binary_str[b + 6]
+
+        e_bit0 = int(bit1) ^ int(bit2) ^ int(bit3)
+        e_bit1 = int(bit0) ^ int(bit1) ^ int(bit3)
+        e_bit2 = int(bit0) ^ int(bit2) ^ int(bit3)
+        sindroma = str(e_bit0 ^ int(r_bit0)) + str(e_bit1 ^ int(r_bit1)) + str(e_bit2 ^ int(r_bit2))
+        if(sindroma == "011"):
+            new_binary_str += str(int(bit0) ^ 1)
+            new_binary_str += bit1
+            new_binary_str += bit2
+            new_binary_str += bit3
+        elif(sindroma == "110"):
+            new_binary_str += bit0
+            new_binary_str += str(int(bit1) ^ 1)
+            new_binary_str += bit2
+            new_binary_str += bit3
+        elif(sindroma == "101"):
+            new_binary_str += bit0
+            new_binary_str += bit1
+            new_binary_str += str(int(bit2) ^ 1)
+            new_binary_str += bit3
+        elif(sindroma == "111"):
+            new_binary_str += bit0
+            new_binary_str += bit1
+            new_binary_str += bit2
+            new_binary_str += str(int(bit3) ^ 1)
         else:
-            new_binary_str += binary_str[b + 1]
+            new_binary_str += bit0
+            new_binary_str += bit1
+            new_binary_str += bit2
+            new_binary_str += bit3
     return new_binary_str        
             
 def getBER(binary_str, p):
@@ -55,32 +86,34 @@ def examplesIII(file):
     getBER(binary_str, 0.001)
     print("- With Encoding")
     result1 = getCodedBER(binary_str, coded_binary_str, 0.001)
-    #binaryStringToFile("generated-content/bscResult1.txt", result1)
+    binaryStringToFile("generated-content/bscResult1.txt", result1)
     print("----------------------------")
     print("Example 2")
     print("- Without Encoding")
     getBER(binary_str, 0.01)
     print("- With Encoding")
     result2 = getCodedBER(binary_str, coded_binary_str, 0.01)
-    #binaryStringToFile("generated-content/bscResult2.txt", result2)
+    binaryStringToFile("generated-content/bscResult2.txt", result2)
     print("----------------------------")
     print("Example 3")
     print("- Without Encoding")
     getBER(binary_str, 0.1)
     print("- With Encoding")
     result3 = getCodedBER(binary_str, coded_binary_str, 0.1)
-    #binaryStringToFile("generated-content/bscResult3.txt", result~3)
+    binaryStringToFile("generated-content/bscResult3.txt", result3)
     print("----------------------------")
     print("Example 4")
     print("- Without Encoding")
     getBER(binary_str, 0.5)
     print("- With Encoding")
     result4 = getCodedBER(binary_str, coded_binary_str, 0.5)
-    #binaryStringToFile("generated-content/bscResult4.txt", result4)
+    binaryStringToFile("generated-content/bscResult4.txt", result4)
     print("----------------------------")
 
 def main():
     examplesIII("resources/alice29.txt")
+    
+
 
 if __name__ == "__main__":
     main()
