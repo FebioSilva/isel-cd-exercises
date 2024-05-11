@@ -36,9 +36,9 @@ def encodeMsg(seq):
     return seq
 
 def decodeMsg(result, k):
-    m = result[:crcBits]
+    m = result[:-crcBits]
     mByte = seqToByteArray(m)
-    expectedParBits = result[k:]
+    expectedParBits = result[-crcBits:]
     actualParBits = parityBits(mByte)
     print(expectedParBits)
     print(actualParBits)
@@ -52,8 +52,8 @@ def examples():
 def main():
     seq = generateBinarySeq(1024)
     encode = encodeMsg(seq)
-    #result = burstBSC(encode, 5, 0.000000001)
-    decode = decodeMsg(encode, 1024)
+    result = burstBSC(encode, 16, 0.002)
+    decode = decodeMsg(result, 1024)
 
 if __name__ == "__main__":
     main()
