@@ -19,6 +19,8 @@ def seqToByteArray(seq):
         data.append(byte)
     return data
 
+
+
 def parityBits(data):
     parBits = format(Crc16.calc(data), '08b')
     if(len(parBits) < crcBits):
@@ -35,13 +37,14 @@ def encodeMsg(seq):
     seq += b
     return seq
 
-def decodeMsg(result, k):
-    m = result[:-crcBits]
+def decodeMsg(result):
+    m = result[:-(crcBits)]
+    print("Message: ", m)
     mByte = seqToByteArray(m)
     expectedParBits = result[-crcBits:]
     actualParBits = parityBits(mByte)
-    print(expectedParBits)
-    print(actualParBits)
+    print("Expected Parity Bits: ", expectedParBits)
+    print("Actual Parity Bits:   ", actualParBits)
     if(expectedParBits != actualParBits):
         print("Error Detected")
 
@@ -53,7 +56,7 @@ def main():
     seq = generateBinarySeq(1024)
     encode = encodeMsg(seq)
     result = burstBSC(encode, 16, 0.002)
-    decode = decodeMsg(result, 1024)
+    decode = decodeMsg(result)
 
 if __name__ == "__main__":
     main()
