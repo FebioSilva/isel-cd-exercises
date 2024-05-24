@@ -49,8 +49,8 @@ def decodeMsg(result):
         print("Error Detected")
 
 
-def examples():
-    print("AH")
+#def examples():
+ 
 
 def main():
     seq = generateBinarySeq(1024)
