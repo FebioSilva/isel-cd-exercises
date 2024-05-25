@@ -21,11 +21,11 @@ def examplesI(file):
     print("----------------------------")
     print("Example 3")
     result3 = getBER(binary_str, 0.1)
-    #binaryStringToFile("generated-content/bscResult3.txt", result3)
+    binaryStringToFile("generated-content/bscResult3.txt", result3)
     print("----------------------------")
     print("Example 4")
     result4 = getBER(binary_str, 0.5)
-    #binaryStringToFile("generated-content/bscResult4.txt", result4)
+    binaryStringToFile("generated-content/bscResult4.txt", result4)
     print("----------------------------")
 
 def main():

@@ -16,7 +16,6 @@ def encode(binary_str):
         new_binary_str += str(int(bit0) ^ int(bit2) ^ int(bit3))
     return new_binary_str
 
-#Falta resolver esta descodificação
 def decode(binary_str):
     new_binary_str = ""
     for b in range(0, len(binary_str), 7):
