@@ -1,4 +1,5 @@
 import serial
+
 def main():
     # Conectar ao Arduino via porta serial
     arduino = serial.Serial('COM3', 9600)

@@ -27,8 +27,6 @@ def main():
         else:
             print("Error detected")
     
-    
-            
-    
+     
 if __name__ == "__main__":
     main()
